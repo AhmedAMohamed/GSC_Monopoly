@@ -18,19 +18,16 @@ class Registration extends CI_Controller {
 		}
 	}
 	
-	private function register_user(){
-
+	public function register_user(){
 		if($this->session->userdata('session_check') == "true"){
 			$first_name = $this->input->post('first_name');
 			$last_name = $this->input->post('last_name');
-			$position = $this->input->post('position');
-			$committe = $this->input->post('committe');
 			$mobile = $this->input->post('mobile');
 			$mail = $this->input->post('mail');
 			$password = $this->input->post('password');
 			$this->load->model('registration_model');
 			$data = $this->session->userdata('serial');
-			$this->registration_model->insert_user($data, $first_name, $last_name, $position, $committe, $mobile, $mail, $password);
+			$this->registration_model->insert_user($data, $first_name, $last_name, $mobile, $mail, $password);
 			$url = base_url("/login");
 			redirect($url);
 		}else{
